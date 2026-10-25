@@ -21,13 +21,19 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/mvc/auth/login", "mvc/auth/register").permitAll()
+                    .requestMatchers(
+                        "/mvc/auth/login",
+                        "/mvc/auth/register",
+                        "/css/**",
+                        "/js/**",
+                        "/images/**"
+                    ).permitAll()
                     .anyRequest().authenticated())
 
                 .formLogin(form -> form
                     .loginPage("/mvc/auth/login")
                     .loginProcessingUrl("/mvc/auth/login")
-                    .defaultSuccessUrl("/mvc/users", true)
+                    .defaultSuccessUrl("/app/users", true)
                     .failureUrl("/mvc/auth/login?error=true")
                     .usernameParameter("username")
                     .passwordParameter("password") 
