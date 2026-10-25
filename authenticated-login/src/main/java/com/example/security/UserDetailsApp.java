@@ -1,10 +1,9 @@
+
 package com.example.security;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,29 +12,23 @@ import com.example.model.User;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor 
+@RequiredArgsConstructor
 public class UserDetailsApp implements UserDetails {
-    
+
     private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
-        authorities.addAll(
-            user.getRole()
+        return user.getRole()
                 .getRolePermissions()
                 .stream()
                 .map(RolePermission::getPermission)
                 .map(SecurityAuthority::new)
-                .toList()
-        );
-
-        return authorities;
+                .toList();
     }
 
     @Override
-    public @Nullable String getPassword() {
+    public String getPassword() {
         return user.getPassword();
     }
 
@@ -44,4 +37,23 @@ public class UserDetailsApp implements UserDetails {
         return user.getName();
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
