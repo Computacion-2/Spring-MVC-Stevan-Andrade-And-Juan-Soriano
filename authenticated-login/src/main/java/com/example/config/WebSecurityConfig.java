@@ -23,8 +23,23 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/mvc/auth/login", "mvc/auth/register").permitAll()
                     .anyRequest().authenticated())
-                .formLogin(form -> )
-                .
+
+                .formLogin(form -> form
+                    .loginPage("/mvc/auth/login")
+                    .loginProcessingUrl("/mvc/auth/login")
+                    .defaultSuccessUrl("/mvc/users", true)
+                    .failureUrl("/mvc/auth/login?error=true")
+                    .usernameParameter("username")
+                    .passwordParameter("password") 
+                    .permitAll())
+
+                .logout(logout -> logout
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/mvc/auth/login?logout=true")
+                    .invalidateHttpSession(true)
+                    .permitAll())
+
+                .build();
     }
     
 }
