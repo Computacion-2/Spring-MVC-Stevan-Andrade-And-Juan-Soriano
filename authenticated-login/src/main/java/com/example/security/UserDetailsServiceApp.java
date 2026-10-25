@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.exception.UserEmptyException;
+import com.example.exception.UserNoFoundException;
 import com.example.model.User;
 import com.example.service.interf.IUserService;
 
@@ -20,10 +22,15 @@ public class UserDetailsServiceApp implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        Optional<User> user = userService.findByName(name);
-        if (user.isEmpty()) throw new UsernameNotFoundException("Nombre no encontrado: " + name);
+        User user = null;
 
-        return new UserDetailsApp(user.get());
+        try {
+            user = userService.findByName(name);
+        } catch (UserEmptyException | UserNoFoundException e) {
+            e.printStackTrace();
+        }
+
+        return new UserDetailsApp(user);
 
     }
 
