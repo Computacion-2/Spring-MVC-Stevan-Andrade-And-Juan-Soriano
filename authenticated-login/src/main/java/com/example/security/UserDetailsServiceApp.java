@@ -4,8 +4,6 @@ package com.example.security;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,7 +26,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserDetailsServiceApp implements UserDetailsService, ApplicationRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceApp.class);
     private static final String DEFAULT_USERNAME = "user";
     private static final String DEFAULT_PASSWORD = "passwordTest";
     private static final String DEFAULT_ROLE = "USER";
@@ -56,7 +53,6 @@ public class UserDetailsServiceApp implements UserDetailsService, ApplicationRun
                     .password(passwordEncoder.encode(DEFAULT_PASSWORD))
                     .role(defaultRole)
                     .build());
-            logger.info("Default development account '{}' is ready.", DEFAULT_USERNAME);
             return;
         }
 
@@ -73,7 +69,6 @@ public class UserDetailsServiceApp implements UserDetailsService, ApplicationRun
         if (changed) {
             userRepository.save(user);
         }
-        logger.info("Default development account '{}' is ready.", DEFAULT_USERNAME);
     }
 
     @Override
