@@ -369,10 +369,6 @@ body {
     outline-offset: 3px;
 }
 
-/* =========================================
-   10. Navegación del módulo
-   ========================================= */
-
 .app-nav-links {
     display: flex;
     align-items: center;
@@ -414,10 +410,6 @@ body {
     width: 100%;
     text-align: left;
 }
-
-/* =========================================
-   11. Botones
-   ========================================= */
 
 .btn-app {
     display: inline-flex;
@@ -495,10 +487,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* =========================================
-   12. Formularios
-   ========================================= */
-
 .form-card {
     padding: 28px;
 }
@@ -550,10 +538,6 @@ body {
     margin-top: 24px;
 }
 
-/* =========================================
-   13. Insignias de roles y permisos
-   ========================================= */
-
 .badge-app {
     display: inline-block;
     padding: 4px 10px;
@@ -589,10 +573,6 @@ body {
     gap: 6px;
 }
 
-/* =========================================
-   14. Mensajes
-   ========================================= */
-
 .app-alert {
     margin-bottom: 20px;
     padding: 13px 16px;
@@ -619,10 +599,6 @@ body {
     border-color: #d3e5fc;
     color: #0058b0;
 }
-
-/* =========================================
-   15. Panel de inicio
-   ========================================= */
 
 .dashboard-grid {
     display: grid;
@@ -653,10 +629,6 @@ body {
     font-size: 16px;
     font-weight: 650;
 }
-
-/* =========================================
-   16. Inicio de sesión y registro
-   ========================================= */
 
 .auth-page {
     display: grid;
@@ -703,4 +675,53 @@ body {
     width: 100%;
     padding: 12px 18px;
     font-size: 15px;
+}
+
+.permission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+}
+
+.permission-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 14px 16px;
+    border: 1px solid var(--app-border);
+    border-radius: 14px;
+
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.permission-option:hover {
+    background: #fafafa;
+}
+
+.permission-option:has(input:checked) {
+    background: #f2f8ff;
+    border-color: var(--app-primary);
+}
+
+.permission-option input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--app-primary);
+}
+
+.permission-name {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.permission-description {
+    display: block;
+    margin-top: 2px;
+    color: var(--app-muted);
+    font-size: 12px;
 }

@@ -3,7 +3,6 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <body>
 
-    <!-- authorities y currentUsername llegan desde GlobalModelAttributes -->
     <header th:fragment="navbar" class="app-header">
         <nav class="navbar navbar-expand container app-navbar"
              aria-label="Navegación principal">
@@ -58,7 +57,6 @@
                     <li><hr class="dropdown-divider"></li>
 
                     <li>
-                        <!-- El logout es POST para que viaje el token CSRF -->
                         <form th:action="@{/logout}" method="post">
                             <button type="submit" class="dropdown-item">Cerrar sesión</button>
                         </form>

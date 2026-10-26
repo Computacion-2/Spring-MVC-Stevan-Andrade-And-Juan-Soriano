@@ -52,7 +52,7 @@ public class AuthService implements IAuthService {
         User user = User.builder()
                 .name(username)
                 .email(email.trim())
-                // Never in plain text: only the hash is stored
+                // la contraseña se guarda cifrada, nunca en texto plano
                 .password(passwordEncoder.encode(password))
                 .role(defaultRole)
                 .createdAt(new Timestamp(System.currentTimeMillis()))
