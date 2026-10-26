@@ -1,12 +1,14 @@
 
 package com.example.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.model.Role;
 import com.example.model.RolePermission;
 import com.example.model.User;
 
@@ -19,12 +21,28 @@ public class UserDetailsApp implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRole()
-                .getRolePermissions()
-                .stream()
-                .map(RolePermission::getPermission)
-                .map(SecurityAuthority::new)
-                .toList();
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        Role role = user.getRole();
+
+        // A user without role is still authenticated, but has no authorities
+        if (role == null) {
+            return authorities;
+        }
+
+        // ROLE_<name> so hasRole('<name>') works
+        authorities.add(new SecurityAuthority(role));
+
+        // Each permission of the role as an authority, for hasAuthority('<permission>')
+        if (role.getRolePermissions() != null) {
+            role.getRolePermissions()
+                    .stream()
+                    .map(RolePermission::getPermission)
+                    .filter(permission -> permission != null)
+                    .map(SecurityAuthority::new)
+                    .forEach(authorities::add);
+        }
+
+        return authorities;
     }
 
     @Override
