@@ -1,15 +1,19 @@
 package com.example.controller;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.config.DataInitializer;
 import com.example.exception.RoleEmptyExcepcion;
+import com.example.exception.RoleNoFoundException;
 import com.example.model.Role;
 import com.example.service.interf.IRoleService;
 
@@ -58,6 +62,30 @@ public class RoleMVCController {
         } catch (RoleEmptyExcepcion e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/app/roles/new";
+        }
+        return "redirect:/app/roles";
+    }
+
+    @PostMapping("/{id}/delete")
+    @PreAuthorize("hasRole('ADMIN') and hasAuthority('ROLES_WRITE')")
+    public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        try {
+            Role role = roleService.findById(id);
+
+            if (DataInitializer.ADMIN_ROLE.equals(role.getName())
+                    || DataInitializer.USER_ROLE.equals(role.getName())) {
+                redirectAttributes.addFlashAttribute("error",
+                        "El rol " + role.getName() + " es del sistema y no se puede eliminar.");
+                return "redirect:/app/roles";
+            }
+
+            roleService.delete(role);
+            redirectAttributes.addFlashAttribute("success", "Rol " + role.getName() + " eliminado.");
+        } catch (RoleEmptyExcepcion | RoleNoFoundException e) {
+            redirectAttributes.addFlashAttribute("error", "El rol no existe.");
+        } catch (DataAccessException e) {
+            redirectAttributes.addFlashAttribute("error",
+                    "No se puede eliminar: hay usuarios con este rol. Quítaselo primero desde Usuarios.");
         }
         return "redirect:/app/roles";
     }

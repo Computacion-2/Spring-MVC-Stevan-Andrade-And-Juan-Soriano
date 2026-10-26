@@ -71,6 +71,15 @@
                             </td>
                             <td th:if="${authorities.contains('ROLES_WRITE')}">
                                 <div class="actions-cell">
+                                    <form class="inline-form"
+                                          th:if="${authorities.contains('ROLE_ADMIN')}"
+                                          th:action="@{/app/roles/{id}/delete(id=${role.id})}"
+                                          method="post"
+                                          onsubmit="return confirm('¿Eliminar este rol?');">
+                                        <button class="btn-app btn-app-danger btn-app-sm" type="submit">
+                                            Eliminar
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
