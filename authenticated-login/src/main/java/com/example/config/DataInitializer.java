@@ -21,11 +21,6 @@ import com.example.repository.IUserRepository;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Seeds the permissions, the ADMIN and USER roles and an admin account.
- * Runs before UserDetailsServiceApp (which creates the default "user" account),
- * so that account reuses the USER role created here.
- */
 @Component
 @Order(1)
 @RequiredArgsConstructor

@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,9 @@ public class UserMVCController {
     private final IUserService userService;
     
     @GetMapping()
+    @PreAuthorize("hasAuthority('USERS_READ')")
     public String getAll(Model model) {
         model.addAttribute("userList", userService.findAll());
-        //Sori here must be security logic
         return "users/users-list";
     }
 

@@ -24,15 +24,12 @@ public class UserDetailsApp implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList<>();
         Role role = user.getRole();
 
-        // A user without role is still authenticated, but has no authorities
         if (role == null) {
             return authorities;
         }
 
-        // ROLE_<name> so hasRole('<name>') works
         authorities.add(new SecurityAuthority(role));
 
-        // Each permission of the role as an authority, for hasAuthority('<permission>')
         if (role.getRolePermissions() != null) {
             role.getRolePermissions()
                     .stream()

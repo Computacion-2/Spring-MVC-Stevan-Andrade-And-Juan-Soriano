@@ -11,10 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-/**
- * Adds the logged user's name and authorities to every view, so the templates
- * can show or hide links and buttons with ${authorities.contains('ROLES_WRITE')}.
- */
 @ControllerAdvice
 public class GlobalModelAttributes {
 

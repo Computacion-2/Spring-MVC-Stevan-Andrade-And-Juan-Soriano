@@ -45,7 +45,6 @@ public class HomeMVCController {
         return "home/index";
     }
 
-    // Spring Security forwards here when an authenticated user lacks the required role/permission
     @RequestMapping("/access-denied")
     public String accessDenied() {
         return "error/access-denied";

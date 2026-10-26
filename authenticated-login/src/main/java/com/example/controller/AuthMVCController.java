@@ -41,7 +41,6 @@ public class AuthMVCController {
                     "Cuenta creada. Ya puedes iniciar sesión como " + name.trim() + ".");
             return "redirect:/mvc/auth/login";
         } catch (RegistrationException e) {
-            // Keep what the user typed (except the passwords) and show the error
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             redirectAttributes.addFlashAttribute("name", name);
             redirectAttributes.addFlashAttribute("email", email);
