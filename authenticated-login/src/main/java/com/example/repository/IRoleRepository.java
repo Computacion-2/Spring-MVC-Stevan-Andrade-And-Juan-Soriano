@@ -11,5 +11,6 @@ import com.example.model.Role;
 public interface IRoleRepository extends JpaRepository<Role, Integer> {
 
     Optional<Role> findByName(String name);
+    boolean existsByName(String name);
     
 }

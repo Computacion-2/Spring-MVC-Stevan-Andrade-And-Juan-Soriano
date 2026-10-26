@@ -67,4 +67,13 @@ public class RoleService implements IRoleService {
         roleRepository.delete(roleToDelete);
 
     }
+
+    @Override
+    public boolean existsByName(String name) {
+
+        if (name == null || name.trim().isEmpty()) return false;
+
+        return roleRepository.existsByName(name.trim());
+
+    }
 }

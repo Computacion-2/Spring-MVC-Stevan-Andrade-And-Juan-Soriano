@@ -11,6 +11,7 @@ public interface IRoleService {
     //Querys
     List<Role> findAll();
     Role findById(int id) throws RoleEmptyExcepcion, RoleNoFoundException;
+    boolean existsByName(String name);
 
     //Interaction with roles table
     void create(Role roleToAdd) throws RoleEmptyExcepcion;
