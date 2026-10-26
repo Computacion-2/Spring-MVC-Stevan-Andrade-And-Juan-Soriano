@@ -369,10 +369,6 @@ body {
     outline-offset: 3px;
 }
 
-/* =========================================
-   10. Navegación del módulo
-   ========================================= */
-
 .app-nav-links {
     display: flex;
     align-items: center;
@@ -414,10 +410,6 @@ body {
     width: 100%;
     text-align: left;
 }
-
-/* =========================================
-   11. Botones
-   ========================================= */
 
 .btn-app {
     display: inline-flex;
@@ -495,10 +487,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* =========================================
-   12. Formularios
-   ========================================= */
-
 .form-card {
     padding: 28px;
 }
@@ -550,10 +538,6 @@ body {
     margin-top: 24px;
 }
 
-/* =========================================
-   13. Insignias de roles y permisos
-   ========================================= */
-
 .badge-app {
     display: inline-block;
     padding: 4px 10px;
@@ -589,10 +573,6 @@ body {
     gap: 6px;
 }
 
-/* =========================================
-   14. Mensajes
-   ========================================= */
-
 .app-alert {
     margin-bottom: 20px;
     padding: 13px 16px;
@@ -619,10 +599,6 @@ body {
     border-color: #d3e5fc;
     color: #0058b0;
 }
-
-/* =========================================
-   15. Panel de inicio
-   ========================================= */
 
 .dashboard-grid {
     display: grid;
@@ -653,10 +629,6 @@ body {
     font-size: 16px;
     font-weight: 650;
 }
-
-/* =========================================
-   16. Inicio de sesión y registro
-   ========================================= */
 
 .auth-page {
     display: grid;

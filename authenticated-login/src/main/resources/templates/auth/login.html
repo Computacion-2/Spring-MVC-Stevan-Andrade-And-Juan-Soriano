@@ -21,7 +21,6 @@
             </div>
             <div th:replace="~{fragments/alerts :: alerts}"></div>
 
-            <!-- th:action agrega el token CSRF; Spring Security procesa este POST -->
             <form th:action="@{/mvc/auth/login}" method="post">
                 <div class="form-field">
                     <label class="app-label" for="username">Usuario</label>
