@@ -1,14 +1,19 @@
 package com.example.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.exception.RoleEmptyExcepcion;
+import com.example.exception.RoleNoFoundException;
 import com.example.exception.UserEmptyException;
 import com.example.exception.UserNoFoundException;
+import com.example.model.Role;
 import com.example.model.User;
 import com.example.repository.IUserRepository;
+import com.example.service.interf.IRoleService;
 import com.example.service.interf.IUserService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService implements IUserService {
 
     private final IUserRepository userRepository;
+    private final IRoleService roleService;
     
     @Override
     public void create(User userToAdd) throws UserEmptyException {
@@ -82,6 +88,19 @@ public class UserService implements IUserService {
         if (userFound.isEmpty()) throw new UserNoFoundException("User wasn't found in database");
 
         return userFound.get();
+
+    }
+
+    @Override
+    public void assignRole(int userId, int roleId)
+            throws UserEmptyException, UserNoFoundException, RoleEmptyExcepcion, RoleNoFoundException {
+
+        User user = findById(userId);
+        Role role = roleService.findById(roleId);
+
+        user.setRole(role);
+        user.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        userRepository.save(user);
 
     }
 

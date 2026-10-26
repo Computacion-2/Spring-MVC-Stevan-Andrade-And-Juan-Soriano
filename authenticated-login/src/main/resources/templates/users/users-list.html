@@ -55,6 +55,10 @@
                             <th scope="col">Usuario</th>
                             <th scope="col">Correo electrónico</th>
                             <th scope="col">Rol</th>
+                            <th scope="col"
+                                th:if="${authorities.contains('USERS_WRITE')}">
+                                <span class="visually-hidden">Acciones</span>
+                            </th>
                         </tr>
                     </thead>
 
@@ -77,6 +81,15 @@
                                       th:text="${user.role.name}">USER</span>
                                 <span class="badge-app badge-muted"
                                       th:if="${user.role == null}">Sin rol</span>
+                            </td>
+
+                            <td th:if="${authorities.contains('USERS_WRITE')}">
+                                <div class="actions-cell">
+                                    <a class="btn-app btn-app-secondary btn-app-sm"
+                                       th:href="@{/app/users/{id}/role(id=${user.id})}">
+                                        Asociar rol
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
