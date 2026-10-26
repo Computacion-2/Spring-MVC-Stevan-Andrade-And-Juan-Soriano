@@ -71,6 +71,11 @@
                             </td>
                             <td th:if="${authorities.contains('ROLES_WRITE')}">
                                 <div class="actions-cell">
+                                    <a class="btn-app btn-app-secondary btn-app-sm"
+                                       th:href="@{/app/roles/{id}/permissions(id=${role.id})}">
+                                        Asociar permisos
+                                    </a>
+
                                     <form class="inline-form"
                                           th:if="${authorities.contains('ROLE_ADMIN')}"
                                           th:action="@{/app/roles/{id}/delete(id=${role.id})}"
