@@ -1,5 +1,6 @@
 package com.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -13,7 +14,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data 
 @AllArgsConstructor 
@@ -27,7 +30,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RolePermission> rolePermissions;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RolePermission> rolePermissions = new ArrayList<>();
 
 }
