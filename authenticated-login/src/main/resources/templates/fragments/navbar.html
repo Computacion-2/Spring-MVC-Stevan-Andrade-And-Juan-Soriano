@@ -3,22 +3,39 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <body>
 
+    <!-- authorities y currentUsername llegan desde GlobalModelAttributes -->
     <header th:fragment="navbar" class="app-header">
         <nav class="navbar navbar-expand container app-navbar"
              aria-label="Navegación principal">
 
-            <a class="navbar-brand app-brand" th:href="@{/app/users}">
+            <a class="navbar-brand app-brand" th:href="@{/}">
                 <span class="brand-icon" aria-hidden="true">A</span>
                 <span>Admin</span>
             </a>
 
-            <div class="dropdown">
+            <ul class="app-nav-links d-none d-md-flex">
+                <li>
+                    <a th:href="@{/}">Inicio</a>
+                </li>
+                <li th:if="${authorities.contains('USERS_READ')}">
+                    <a th:href="@{/app/users}">Usuarios</a>
+                </li>
+                <li th:if="${authorities.contains('ROLES_READ')}">
+                    <a th:href="@{/app/roles}">Roles</a>
+                </li>
+                <li th:if="${authorities.contains('PERMISSIONS_READ')}">
+                    <a th:href="@{/app/permissions}">Permisos</a>
+                </li>
+            </ul>
+
+            <div class="dropdown ms-auto">
                 <button
                     class="btn menu-button dropdown-toggle"
                     type="button"
                     id="mainMenu"
                     data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    aria-expanded="false"
+                    th:text="${currentUsername != null ? currentUsername : 'Menú'}">
                     Menú
                 </button>
 
@@ -26,17 +43,25 @@
                     aria-labelledby="mainMenu">
 
                     <li>
-                        <a class="dropdown-item"
-                           th:href="@{/}">
-                            Inicio
-                        </a>
+                        <a class="dropdown-item" th:href="@{/}">Inicio</a>
+                    </li>
+                    <li th:if="${authorities.contains('USERS_READ')}">
+                        <a class="dropdown-item" th:href="@{/app/users}">Usuarios</a>
+                    </li>
+                    <li th:if="${authorities.contains('ROLES_READ')}">
+                        <a class="dropdown-item" th:href="@{/app/roles}">Roles</a>
+                    </li>
+                    <li th:if="${authorities.contains('PERMISSIONS_READ')}">
+                        <a class="dropdown-item" th:href="@{/app/permissions}">Permisos</a>
                     </li>
 
+                    <li><hr class="dropdown-divider"></li>
+
                     <li>
-                        <a class="dropdown-item"
-                           th:href="@{/app/users}">
-                            Usuarios
-                        </a>
+                        <!-- El logout es POST para que viaje el token CSRF -->
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                        </form>
                     </li>
 
                 </ul>
