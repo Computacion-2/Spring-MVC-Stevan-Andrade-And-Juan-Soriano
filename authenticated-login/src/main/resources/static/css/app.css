@@ -368,3 +368,339 @@ body {
     outline: 2px solid var(--app-primary);
     outline-offset: 3px;
 }
+
+/* =========================================
+   10. Navegación del módulo
+   ========================================= */
+
+.app-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0 auto 0 32px;
+    padding: 0;
+    list-style: none;
+}
+
+.app-nav-links a {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+
+    color: var(--app-muted);
+    font-size: 14px;
+    text-decoration: none;
+
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.app-nav-links a:hover,
+.app-nav-links a.active {
+    background: var(--app-background);
+    color: var(--app-text);
+}
+
+.app-dropdown .dropdown-header {
+    padding: 8px 12px 4px;
+    color: var(--app-muted);
+    font-size: 12px;
+}
+
+.app-dropdown form {
+    margin: 0;
+}
+
+.app-dropdown button.dropdown-item {
+    width: 100%;
+    text-align: left;
+}
+
+/* =========================================
+   11. Botones
+   ========================================= */
+
+.btn-app {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 9px 18px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.btn-app-primary {
+    background: var(--app-primary);
+    color: white;
+}
+
+.btn-app-primary:hover {
+    background: var(--app-primary-hover);
+    color: white;
+}
+
+.btn-app-secondary {
+    background: var(--app-surface);
+    border-color: var(--app-border);
+    color: var(--app-text);
+}
+
+.btn-app-secondary:hover {
+    background: var(--app-background);
+    color: var(--app-text);
+}
+
+.btn-app-danger {
+    background: #fff1f0;
+    border-color: #ffd9d6;
+    color: #c4271b;
+}
+
+.btn-app-danger:hover {
+    background: #ffe3e0;
+    color: #a31f15;
+}
+
+.btn-app-sm {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.actions-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.card-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   12. Formularios
+   ========================================= */
+
+.form-card {
+    padding: 28px;
+}
+
+.app-label {
+    display: block;
+    margin-bottom: 6px;
+
+    color: var(--app-text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.app-input,
+.app-select {
+    width: 100%;
+    padding: 11px 14px;
+
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: 12px;
+
+    color: var(--app-text);
+    font-size: 15px;
+
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.app-input:focus,
+.app-select:focus {
+    border-color: var(--app-primary);
+    box-shadow: 0 0 0 4px rgb(0 113 227 / 12%);
+    outline: none;
+}
+
+.form-field {
+    margin-bottom: 18px;
+}
+
+.form-hint {
+    margin-top: 6px;
+    color: var(--app-muted);
+    font-size: 12px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+/* =========================================
+   13. Insignias de roles y permisos
+   ========================================= */
+
+.badge-app {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.badge-role {
+    background: #e8f2fe;
+    color: #0058b0;
+}
+
+.badge-permission {
+    background: #f0f0f5;
+    color: #3a3a3f;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 500;
+}
+
+.badge-muted {
+    background: transparent;
+    border: 1px dashed var(--app-border);
+    color: var(--app-muted);
+    font-weight: 500;
+}
+
+.badge-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* =========================================
+   14. Mensajes
+   ========================================= */
+
+.app-alert {
+    margin-bottom: 20px;
+    padding: 13px 16px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+
+    font-size: 14px;
+}
+
+.app-alert-success {
+    background: #effaf2;
+    border-color: #ccebd5;
+    color: #1d6b34;
+}
+
+.app-alert-error {
+    background: #fff1f0;
+    border-color: #ffd9d6;
+    color: #a31f15;
+}
+
+.app-alert-info {
+    background: #eef5fe;
+    border-color: #d3e5fc;
+    color: #0058b0;
+}
+
+/* =========================================
+   15. Panel de inicio
+   ========================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.dashboard-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 24px 26px;
+
+    color: var(--app-text);
+    text-decoration: none;
+
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.dashboard-card:hover {
+    color: var(--app-text);
+    box-shadow: 0 8px 30px rgb(0 0 0 / 8%);
+    transform: translateY(-2px);
+}
+
+.dashboard-card-title {
+    font-size: 16px;
+    font-weight: 650;
+}
+
+/* =========================================
+   16. Inicio de sesión y registro
+   ========================================= */
+
+.auth-page {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 32px 16px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 32px;
+}
+
+.auth-card .brand-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.auth-title {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 650;
+    letter-spacing: -1px;
+}
+
+.auth-switch {
+    margin: 22px 0 0;
+    color: var(--app-muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth-switch a {
+    color: var(--app-primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.auth-card .btn-app {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 15px;
+}

@@ -24,6 +24,7 @@ public class WebSecurityConfig {
                     .requestMatchers(
                         "/mvc/auth/login",
                         "/mvc/auth/register",
+                        "/error",
                         "/css/**",
                         "/js/**",
                         "/images/**"
@@ -33,7 +34,7 @@ public class WebSecurityConfig {
                 .formLogin(form -> form
                     .loginPage("/mvc/auth/login")
                     .loginProcessingUrl("/mvc/auth/login")
-                    .defaultSuccessUrl("/app/users", true)
+                    .defaultSuccessUrl("/", true)
                     .failureUrl("/mvc/auth/login?error=true")
                     .usernameParameter("username")
                     .passwordParameter("password") 
@@ -44,6 +45,9 @@ public class WebSecurityConfig {
                     .logoutSuccessUrl("/mvc/auth/login?logout=true")
                     .invalidateHttpSession(true)
                     .permitAll())
+
+                .exceptionHandling(exception -> exception
+                    .accessDeniedPage("/access-denied"))
 
                 .build();
     }

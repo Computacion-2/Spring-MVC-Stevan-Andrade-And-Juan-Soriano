@@ -1,6 +1,6 @@
 package com.example.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +27,7 @@ public class User {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(unique = true, nullable = false)
     private String name;
     private String email;
     private String password;

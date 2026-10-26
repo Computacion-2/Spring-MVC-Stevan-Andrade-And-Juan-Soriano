@@ -11,7 +11,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data 
 @AllArgsConstructor 
@@ -24,6 +26,8 @@ public class RolePermission {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
