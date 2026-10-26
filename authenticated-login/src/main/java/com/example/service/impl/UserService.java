@@ -104,4 +104,15 @@ public class UserService implements IUserService {
 
     }
 
+    @Override
+    public void removeRole(int userId) throws UserEmptyException, UserNoFoundException {
+
+        User user = findById(userId);
+
+        user.setRole(null);
+        user.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        userRepository.save(user);
+
+    }
+
 }

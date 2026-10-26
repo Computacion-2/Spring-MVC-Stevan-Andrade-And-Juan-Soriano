@@ -89,6 +89,16 @@
                                        th:href="@{/app/users/{id}/role(id=${user.id})}">
                                         Asociar rol
                                     </a>
+
+                                    <form class="inline-form"
+                                          th:if="${user.role != null and user.name != currentUsername}"
+                                          th:action="@{/app/users/{id}/role/remove(id=${user.id})}"
+                                          method="post"
+                                          onsubmit="return confirm('¿Quitar el rol a este usuario?');">
+                                        <button class="btn-app btn-app-danger btn-app-sm" type="submit">
+                                            Quitar rol
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

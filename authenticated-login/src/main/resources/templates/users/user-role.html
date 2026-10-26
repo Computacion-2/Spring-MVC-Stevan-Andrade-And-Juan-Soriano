@@ -38,6 +38,13 @@
                     <span class="badge-app badge-muted"
                           th:if="${user.role.rolePermissions.isEmpty()}">El rol no tiene permisos</span>
                 </div>
+
+                <form class="mt-4"
+                      th:action="@{/app/users/{id}/role/remove(id=${user.id})}"
+                      method="post"
+                      onsubmit="return confirm('¿Quitar el rol a este usuario?');">
+                    <button class="btn-app btn-app-danger btn-app-sm" type="submit">Quitar rol</button>
+                </form>
             </div>
 
             <div class="form-card" th:if="${user.role == null}">

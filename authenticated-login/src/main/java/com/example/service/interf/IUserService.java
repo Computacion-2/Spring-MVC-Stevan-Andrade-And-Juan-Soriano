@@ -21,5 +21,6 @@ public interface IUserService {
     User findById(int id) throws UserEmptyException, UserNoFoundException;
 
     void assignRole(int userId, int roleId) throws UserEmptyException, UserNoFoundException, RoleEmptyExcepcion, RoleNoFoundException;
+    void removeRole(int userId) throws UserEmptyException, UserNoFoundException;
 
 }
